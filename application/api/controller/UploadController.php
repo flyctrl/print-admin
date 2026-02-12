@@ -105,23 +105,6 @@ class UploadController extends BaseController
 
 
 
-
-
-
-    public static function createClient($accessKeyId, $accessKeySecret){
-        $config = new Config([
-            // 必填，您的 AccessKey ID
-            "accessKeyId" => $accessKeyId,
-            // 必填，您的 AccessKey Secret
-            "accessKeySecret" => $accessKeySecret
-        ]);
-        // Endpoint 请参考 https://api.aliyun.com/product/imageenhan
-        $config->endpoint = "imageenhan.cn-shanghai.aliyuncs.com";
-        return new Imageenhan($config);
-    }
-
-
-
     public  function image(){
 
         $generateSuperResolutionImageRequest = new MakeSuperResolutionImageRequest([
