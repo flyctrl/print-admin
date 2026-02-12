@@ -1,0 +1,22 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="" style="width: 60%!important;">
+
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Express_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-express_id" data-rule="required" data-source="express/index" class="form-control selectpage" name="row[express_id]" type="text" value="{$row.express_id|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Express_num')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-express_num" class="form-control" name="row[express_num]" type="text" value="{$row.express_num|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

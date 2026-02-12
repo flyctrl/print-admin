@@ -1,0 +1,63 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ticket_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ticket_name" class="form-control" name="row[ticket_name]" type="text">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('优惠券类型')}:</label>
+        <div class="col-xs-12 col-sm-8">
+
+            <select  id="c-type" class="form-control selectpicker" name="row[type]">
+                {foreach name="typeList" item="vo"}
+                <option value="{$key}" {in name="key" value=""}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Limitation_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-limitation_price" class="form-control" step="0.01" name="row[limitation_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group deduction">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Deduction_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-deduction_price" class="form-control" step="0.01" name="row[deduction_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group discount">
+        <label class="control-label col-xs-12 col-sm-2">{:__('折扣')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-discount" class="form-control" placeholder="9折填写90"  name="row[discount]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('End_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-end_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[end_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('User_ids')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-user_ids" data-rule="required"  data-source="user/index" data-field="id" data-multiple="true" class="form-control selectpage" name="row[user_ids]" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Create_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-create_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[create_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,91 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Paper_cover_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-paper_cover_price" class="form-control" step="0.01" name="row[paper_cover_price]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Art_paper_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-art_paper_price" class="form-control" step="0.01" name="row[art_paper_price]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Staple_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-staple_price" class="form-control" step="0.01" name="row[staple_price]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ring_mounting_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ring_mounting_price" class="form-control" step="0.01" name="row[ring_mounting_price]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Film_covering')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-film_covering" class="form-control" step="0.01" name="row[film_covering]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Area_json')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <dl class="fieldlist" data-name="row[area_json]">
+                <dd>
+                    <ins>{:__('Key')}</ins>
+                    <ins>{:__('Value')}</ins>
+                </dd>
+                <dd><a href="javascript:;" class="btn btn-sm btn-success btn-append"><i class="fa fa-plus"></i> {:__('Append')}</a></dd>
+                <textarea name="row[area_json]" class="form-control hide" cols="30" rows="5"></textarea>
+            </dl>
+
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('First_weight_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-first_weight_price" class="form-control" step="0.01" name="row[first_weight_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Continuation_weight_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-continuation_weight_price" class="form-control" step="0.01" name="row[continuation_weight_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Random_color_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-random_color_price" class="form-control" step="0.01" name="row[random_color_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Select_color_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-select_color_price" class="form-control" step="0.01" name="row[select_color_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Cover_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-cover_price" class="form-control" step="0.01" name="row[cover_price]" type="number">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Create_time')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-create_time" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[create_time]" type="text" value="{:date('Y-m-d H:i:s')}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-primary btn-embossed disabled">{:__('OK')}</button>
+        </div>
+    </div>
+</form>
