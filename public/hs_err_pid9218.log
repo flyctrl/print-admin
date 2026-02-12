@@ -1,0 +1,1072 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 359661568 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2791), pid=9218, tid=0x00007fcb648f8700
+#
+# JRE version: OpenJDK Runtime Environment (8.0_392-b08) (build 1.8.0_392-b08)
+# Java VM: OpenJDK 64-Bit Server VM (25.392-b08 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fcb740d1800):  VMThread [stack: 0x00007fcb647f9000,0x00007fcb648f9000] [id=9237]
+
+Stack: [0x00007fcb647f9000,0x00007fcb648f9000],  sp=0x00007fcb648f7300,  free space=1016k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xb69c5d]  VMError::report_and_die()+0x1cd
+V  [libjvm.so+0x50d67a]  report_vm_out_of_memory(char const*, int, unsigned long, VMErrorType, char const*)+0xaa
+V  [libjvm.so+0x944e08]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0xd8
+V  [libjvm.so+0x93ecce]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x2e
+V  [libjvm.so+0x9bcaab]  PSVirtualSpace::expand_by(unsigned long)+0x5b
+V  [libjvm.so+0x9bd780]  PSYoungGen::resize_generation(unsigned long, unsigned long)+0xd0
+V  [libjvm.so+0x9bdadb]  PSYoungGen::resize(unsigned long, unsigned long)+0x1b
+V  [libjvm.so+0x9b9d27]  PSScavenge::invoke_no_policy()+0xde7
+V  [libjvm.so+0x9ba4b8]  PSScavenge::invoke()+0x38
+V  [libjvm.so+0x96c6d3]  ParallelScavengeHeap::failed_mem_allocate(unsigned long)+0x63
+V  [libjvm.so+0xb6b8b3]  VM_ParallelGCFailedAllocation::doit()+0x93
+V  [libjvm.so+0xb70ce5]  VM_Operation::evaluate()+0x55
+V  [libjvm.so+0xb6ed0a]  VMThread::evaluate_operation(VM_Operation*)+0x11a
+V  [libjvm.so+0xb6f179]  VMThread::loop()+0x219
+V  [libjvm.so+0xb6f629]  VMThread::run()+0x89
+V  [libjvm.so+0x941db2]  java_start(Thread*)+0xf2
+
+VM_Operation (0x00007fcb7d9194d0): ParallelGCFailedAllocation, mode: safepoint, requested by thread 0x00007fcb7404b800
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007fcb74127000 JavaThread "Service Thread" daemon [_thread_blocked, id=9243, stack(0x00007fcb641f2000,0x00007fcb642f3000)]
+  0x00007fcb7411c800 JavaThread "C1 CompilerThread1" daemon [_thread_blocked, id=9242, stack(0x00007fcb642f4000,0x00007fcb643f4000)]
+  0x00007fcb74119800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=9241, stack(0x00007fcb643f5000,0x00007fcb644f5000)]
+  0x00007fcb74109000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=9240, stack(0x00007fcb644f5000,0x00007fcb645f6000)]
+  0x00007fcb740e0000 JavaThread "Finalizer" daemon [_thread_blocked, id=9239, stack(0x00007fcb645f6000,0x00007fcb646f7000)]
+  0x00007fcb740db800 JavaThread "Reference Handler" daemon [_thread_blocked, id=9238, stack(0x00007fcb646f7000,0x00007fcb647f8000)]
+  0x00007fcb7404b800 JavaThread "main" [_thread_blocked, id=9234, stack(0x00007fcb7d81d000,0x00007fcb7d91d000)]
+
+Other Threads:
+=>0x00007fcb740d1800 VMThread [stack: 0x00007fcb647f9000,0x00007fcb648f9000] [id=9237]
+  0x00007fcb7412a000 WatcherThread [stack: 0x00007fcb640f2000,0x00007fcb641f2000] [id=9244]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007fcb74048df0] Threads_lock - owner thread: 0x00007fcb740d1800
+[0x00007fcb740492f0] Heap_lock - owner thread: 0x00007fcb7404b800
+
+heap address: 0x00000006cc000000, size: 3904 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x00000007c0000000
+
+Heap:
+ PSYoungGen      total 260096K, used 10238K [0x000000076eb00000, 0x000000077f300000, 0x00000007c0000000)
+  eden space 249856K, 0% used [0x000000076eb00000,0x000000076eb00000,0x000000077df00000)
+  from space 10240K, 99% used [0x000000077df00000,0x000000077e8ff920,0x000000077e900000)
+  to   space 10240K, 0% used [0x000000077e900000,0x000000077e900000,0x000000077f300000)
+ ParOldGen       total 166912K, used 116836K [0x00000006cc000000, 0x00000006d6300000, 0x000000076eb00000)
+  object space 166912K, 69% used [0x00000006cc000000,0x00000006d32190d8,0x00000006d6300000)
+ Metaspace       used 5042K, capacity 5504K, committed 5632K, reserved 1056768K
+  class space    used 454K, capacity 496K, committed 512K, reserved 1048576K
+
+Card table byte_map: [0x00007fcb79c6b000,0x00007fcb7a40c000] byte_map_base: 0x00007fcb7660b000
+
+Marking Bits: (ParMarkBitMap*) 0x00007fcb7cadf640
+ Begin Bits: [0x00007fcb50600000, 0x00007fcb54300000)
+ End Bits:   [0x00007fcb54300000, 0x00007fcb58000000)
+
+Polling page: 0x00007fcb7d92f000
+
+CodeCache: size=245760Kb used=3393Kb max_used=3393Kb free=242367Kb
+ bounds [0x00007fcb65000000, 0x00007fcb65360000, 0x00007fcb74000000]
+ total_blobs=961 nmethods=687 adapters=187
+ compilation: enabled
+
+Compilation events (250 events):
+Event: 6.018 Thread 0x00007fcb7411c800 nmethod 574 0x00007fcb652c9a90 code [0x00007fcb652c9c00, 0x00007fcb652c9d88]
+Event: 6.018 Thread 0x00007fcb7411c800  555       1       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfIndirectReference::getNumber (5 bytes)
+Event: 6.018 Thread 0x00007fcb7411c800 nmethod 555 0x00007fcb652c9e50 code [0x00007fcb652c9fa0, 0x00007fcb652ca0b0]
+Event: 6.018 Thread 0x00007fcb7411c800  575       1       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfArray::getArrayList (5 bytes)
+Event: 6.018 Thread 0x00007fcb7411c800 nmethod 575 0x00007fcb652ca110 code [0x00007fcb652ca260, 0x00007fcb652ca370]
+Event: 6.018 Thread 0x00007fcb7411c800  554       2       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfDictionary::getDirectObject (9 bytes)
+Event: 6.018 Thread 0x00007fcb7411c800 nmethod 554 0x00007fcb652ca3d0 code [0x00007fcb652ca540, 0x00007fcb652ca718]
+Event: 6.018 Thread 0x00007fcb7411c800  551       2       java.util.zip.ZipFile::ensureOpen (37 bytes)
+Event: 6.018 Thread 0x00007fcb7411c800 nmethod 551 0x00007fcb652ca810 code [0x00007fcb652ca9a0, 0x00007fcb652cac78]
+Event: 6.018 Thread 0x00007fcb7411c800  552       2       java.util.zip.ZipCoder::getBytes (192 bytes)
+Event: 6.019 Thread 0x00007fcb7411c800 nmethod 552 0x00007fcb652cadd0 code [0x00007fcb652cb060, 0x00007fcb652cbe78]
+Event: 6.019 Thread 0x00007fcb7411c800  576       2       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfDictionary::getKeys (8 bytes)
+Event: 6.019 Thread 0x00007fcb7411c800 nmethod 576 0x00007fcb652cc950 code [0x00007fcb652ccac0, 0x00007fcb652ccc48]
+Event: 6.019 Thread 0x00007fcb7411c800  577       2       java.util.HashMap::keySet (25 bytes)
+Event: 6.019 Thread 0x00007fcb7411c800 nmethod 577 0x00007fcb652cccd0 code [0x00007fcb652cce40, 0x00007fcb652cd030]
+Event: 6.019 Thread 0x00007fcb7411c800  578       2       java.util.HashMap$KeySet::iterator (12 bytes)
+Event: 6.020 Thread 0x00007fcb7411c800 nmethod 578 0x00007fcb652cd0d0 code [0x00007fcb652cd240, 0x00007fcb652cd448]
+Event: 6.020 Thread 0x00007fcb7411c800  579       2       java.util.HashMap$KeyIterator::<init> (11 bytes)
+Event: 6.020 Thread 0x00007fcb7411c800 nmethod 579 0x00007fcb652cd510 code [0x00007fcb652cd680, 0x00007fcb652cd808]
+Event: 6.020 Thread 0x00007fcb7411c800  580   !   2       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::getPdfObject (92 bytes)
+Event: 6.020 Thread 0x00007fcb7411c800 nmethod 580 0x00007fcb652cd890 code [0x00007fcb652cda60, 0x00007fcb652cdeb8]
+Event: 6.020 Thread 0x00007fcb7411c800  582       2       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfDictionary::size (8 bytes)
+Event: 6.020 Thread 0x00007fcb7411c800 nmethod 582 0x00007fcb652ce3d0 code [0x00007fcb652ce520, 0x00007fcb652ce670]
+Event: 6.020 Thread 0x00007fcb7411c800  583       2       java.util.AbstractCollection::toArray (147 bytes)
+Event: 6.021 Thread 0x00007fcb7411c800 nmethod 583 0x00007fcb652ce710 code [0x00007fcb652ce920, 0x00007fcb652cef78]
+Event: 6.021 Thread 0x00007fcb7411c800  584       2       java.util.HashMap$KeySet::size (8 bytes)
+Event: 6.021 Thread 0x00007fcb7411c800 nmethod 584 0x00007fcb652cf310 code [0x00007fcb652cf460, 0x00007fcb652cf5b0]
+Event: 6.027 Thread 0x00007fcb74119800 nmethod 540 0x00007fcb652d3c10 code [0x00007fcb652d3e40, 0x00007fcb652d57b8]
+Event: 6.027 Thread 0x00007fcb74119800  581       4       java.util.HashMap$HashIterator::hasNext (13 bytes)
+Event: 6.027 Thread 0x00007fcb74119800 nmethod 581 0x00007fcb6524d790 code [0x00007fcb6524d8e0, 0x00007fcb6524d958]
+Event: 6.027 Thread 0x00007fcb74119800  562       4       java.util.ArrayList::get (11 bytes)
+Event: 6.028 Thread 0x00007fcb74119800 nmethod 562 0x00007fcb652d0c10 code [0x00007fcb652d0d60, 0x00007fcb652d0e38]
+Event: 6.028 Thread 0x00007fcb74119800  585       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfObject::isIndirect (15 bytes)
+Event: 6.028 Thread 0x00007fcb74119800 nmethod 585 0x00007fcb652d2250 code [0x00007fcb652d23a0, 0x00007fcb652d2418]
+Event: 6.028 Thread 0x00007fcb74119800  541       4       java.util.ArrayList::grow (45 bytes)
+Event: 6.030 Thread 0x00007fcb74119800 nmethod 541 0x00007fcb652d1d50 code [0x00007fcb652d1ea0, 0x00007fcb652d2118]
+Event: 6.030 Thread 0x00007fcb74119800  573       4       java.lang.Integer::<init> (10 bytes)
+Event: 6.030 Thread 0x00007fcb74119800 nmethod 573 0x00007fcb65240a90 code [0x00007fcb65240be0, 0x00007fcb65240c38]
+Event: 6.030 Thread 0x00007fcb74119800  586       4       java.util.HashMap$HashIterator::nextNode (100 bytes)
+Event: 6.033 Thread 0x00007fcb74119800 nmethod 586 0x00007fcb652d18d0 code [0x00007fcb652d1a20, 0x00007fcb652d1c38]
+Event: 6.033 Thread 0x00007fcb74119800  549       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PRIndirectReference::<init> (26 bytes)
+Event: 6.033 Thread 0x00007fcb74119800 nmethod 549 0x00007fcb652d1690 code [0x00007fcb652d17e0, 0x00007fcb652d1878]
+Event: 6.033 Thread 0x00007fcb74119800  550       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfIndirectReference::<init> (11 bytes)
+Event: 6.033 Thread 0x00007fcb74119800 nmethod 550 0x00007fcb652d1450 code [0x00007fcb652d15a0, 0x00007fcb652d1618]
+Event: 6.033 Thread 0x00007fcb74119800  544       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfObject::<init> (19 bytes)
+Event: 6.034 Thread 0x00007fcb74119800 nmethod 544 0x00007fcb652d1190 code [0x00007fcb652d12e0, 0x00007fcb652d1388]
+Event: 6.034 Thread 0x00007fcb74119800  545       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfLiteral::<init> (7 bytes)
+Event: 6.034 Thread 0x00007fcb7411c800  587       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfDictionary::get (12 bytes)
+Event: 6.034 Thread 0x00007fcb7411c800 nmethod 587 0x00007fcb652d06d0 code [0x00007fcb652d0840, 0x00007fcb652d0b48]
+Event: 6.034 Thread 0x00007fcb7411c800  592       3       java.util.AbstractCollection::toArray (147 bytes)
+Event: 6.035 Thread 0x00007fcb7411c800 nmethod 592 0x00007fcb652d6e50 code [0x00007fcb652d70c0, 0x00007fcb652d81f8]
+Event: 6.035 Thread 0x00007fcb7411c800  591  s    3       java.util.Stack::pop (19 bytes)
+Event: 6.035 Thread 0x00007fcb7411c800 nmethod 591 0x00007fcb652d2b10 code [0x00007fcb652d2ce0, 0x00007fcb652d3828]
+Event: 6.035 Thread 0x00007fcb7411c800  593  s    3       java.util.Vector::removeElementAt (115 bytes)
+Event: 6.036 Thread 0x00007fcb7411c800 nmethod 593 0x00007fcb652d86d0 code [0x00007fcb652d8900, 0x00007fcb652d96a8]
+Event: 6.036 Thread 0x00007fcb7411c800  597       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::getPdfObjectRelease (11 bytes)
+Event: 6.036 Thread 0x00007fcb7411c800 nmethod 597 0x00007fcb652d2710 code [0x00007fcb652d2880, 0x00007fcb652d2a38]
+Event: 6.036 Thread 0x00007fcb7411c800  594  s    3       java.util.Vector::addElement (38 bytes)
+Event: 6.036 Thread 0x00007fcb7411c800 nmethod 594 0x00007fcb652cfe10 code [0x00007fcb652cffa0, 0x00007fcb652d04c8]
+Event: 6.036 Thread 0x00007fcb7411c800  595       3       java.util.Stack::push (7 bytes)
+Event: 6.036 Thread 0x00007fcb7411c800 nmethod 595 0x00007fcb652cf9d0 code [0x00007fcb652cfb40, 0x00007fcb652cfd68]
+Event: 6.036 Thread 0x00007fcb7411c800  596       3       java.util.Stack::empty (13 bytes)
+Event: 6.037 Thread 0x00007fcb7411c800 nmethod 596 0x00007fcb652d9d10 code [0x00007fcb652d9e80, 0x00007fcb652da250]
+Event: 6.037 Thread 0x00007fcb7411c800  599       3       java.util.HashMap::get (23 bytes)
+Event: 6.037 Thread 0x00007fcb7411c800 nmethod 599 0x00007fcb652da310 code [0x00007fcb652da4a0, 0x00007fcb652da8b8]
+Event: 6.037 Thread 0x00007fcb7411c800  588  s    3       java.util.Vector::elementAt (48 bytes)
+Event: 6.037 Thread 0x00007fcb7411c800 nmethod 588 0x00007fcb652daa10 code [0x00007fcb652dac20, 0x00007fcb652db7a8]
+Event: 6.037 Thread 0x00007fcb7411c800  600       3       java.util.HashMap::getNode (148 bytes)
+Event: 6.038 Thread 0x00007fcb7411c800 nmethod 600 0x00007fcb652dbd50 code [0x00007fcb652dbf20, 0x00007fcb652dc8c8]
+Event: 6.038 Thread 0x00007fcb7411c800  598       3       java.util.HashMap$KeyIterator::next (8 bytes)
+Event: 6.038 Thread 0x00007fcb7411c800 nmethod 598 0x00007fcb652dcb90 code [0x00007fcb652dcd00, 0x00007fcb652dcf08]
+Event: 6.038 Thread 0x00007fcb7411c800  589       1       java.util.HashMap$KeySet::size (8 bytes)
+Event: 6.038 Thread 0x00007fcb7411c800 nmethod 589 0x00007fcb652cf650 code [0x00007fcb652cf7a0, 0x00007fcb652cf8b0]
+Event: 6.038 Thread 0x00007fcb7411c800  590       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfDictionary::size (8 bytes)
+Event: 6.038 Thread 0x00007fcb7411c800 nmethod 590 0x00007fcb652dcfd0 code [0x00007fcb652dd140, 0x00007fcb652dd330]
+Event: 6.038 Thread 0x00007fcb74119800 nmethod 545 0x00007fcb652e0090 code [0x00007fcb652e01e0, 0x00007fcb652e0288]
+Event: 6.038 Thread 0x00007fcb74119800  601  s    4       java.util.Stack::pop (19 bytes)
+Event: 6.041 Thread 0x00007fcb74119800 nmethod 601 0x00007fcb652de490 code [0x00007fcb652de5e0, 0x00007fcb652de8f8]
+Event: 6.041 Thread 0x00007fcb74119800  602       4       java.util.HashMap$HashIterator::<init> (79 bytes)
+Event: 6.045 Thread 0x00007fcb74119800 nmethod 602 0x00007fcb652ddf10 code [0x00007fcb652de060, 0x00007fcb652de358]
+Event: 6.045 Thread 0x00007fcb74119800  603  s    4       java.util.Vector::removeElementAt (115 bytes)
+Event: 6.046 Thread 0x00007fcb74119800 nmethod 603 0x00007fcb652dd990 code [0x00007fcb652ddae0, 0x00007fcb652ddd98]
+Event: 6.046 Thread 0x00007fcb74119800  605  s    4       java.util.Vector::addElement (38 bytes)
+Event: 6.048 Thread 0x00007fcb74119800 nmethod 605 0x00007fcb652dd3d0 code [0x00007fcb652dd520, 0x00007fcb652dd7d8]
+Event: 6.048 Thread 0x00007fcb74119800  606       4       java.util.Stack::push (7 bytes)
+Event: 6.049 Thread 0x00007fcb74119800 nmethod 606 0x00007fcb652e1d90 code [0x00007fcb652e1ee0, 0x00007fcb652e21b8]
+Event: 6.049 Thread 0x00007fcb74119800  604       4       java.util.Stack::empty (13 bytes)
+Event: 6.050 Thread 0x00007fcb74119800 nmethod 604 0x00007fcb652e2350 code [0x00007fcb652e24a0, 0x00007fcb652e2698]
+Event: 6.050 Thread 0x00007fcb74119800  609       4       java.util.HashMap::get (23 bytes)
+Event: 6.051 Thread 0x00007fcb7411c800  608  s    3       java.util.Vector::addElement (38 bytes)
+Event: 6.052 Thread 0x00007fcb7411c800 nmethod 608 0x00007fcb652df7d0 code [0x00007fcb652df960, 0x00007fcb652dfe88]
+Event: 6.052 Thread 0x00007fcb7411c800  610       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfDictionary::getKeys (8 bytes)
+Event: 6.052 Thread 0x00007fcb7411c800 nmethod 610 0x00007fcb652df390 code [0x00007fcb652df500, 0x00007fcb652df728]
+Event: 6.052 Thread 0x00007fcb7411c800  611       3       java.util.HashMap$KeySet::iterator (12 bytes)
+Event: 6.052 Thread 0x00007fcb7411c800 nmethod 611 0x00007fcb652deed0 code [0x00007fcb652df040, 0x00007fcb652df2a8]
+Event: 6.052 Thread 0x00007fcb7411c800  612       3       java.util.HashMap::keySet (25 bytes)
+Event: 6.052 Thread 0x00007fcb7411c800 nmethod 612 0x00007fcb652e16d0 code [0x00007fcb652e1860, 0x00007fcb652e1bf0]
+Event: 6.052 Thread 0x00007fcb7411c800  607 %     3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::removeUnusedNode @ 14 (635 bytes)
+Event: 6.056 Thread 0x00007fcb7411c800 nmethod 607% 0x00007fcb652e2750 code [0x00007fcb652e2ee0, 0x00007fcb652e9688]
+Event: 6.059 Thread 0x00007fcb74119800 nmethod 609 0x00007fcb652e0f90 code [0x00007fcb652e1100, 0x00007fcb652e13d8]
+Event: 6.059 Thread 0x00007fcb74119800  614       4       java.util.HashMap::getNode (148 bytes)
+Event: 6.061 Thread 0x00007fcb74119800 nmethod 614 0x00007fcb652e0950 code [0x00007fcb652e0ac0, 0x00007fcb652e0d58]
+Event: 6.061 Thread 0x00007fcb74119800  613       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfDictionary::get (12 bytes)
+Event: 6.067 Thread 0x00007fcb7411c800  615       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::removeUnusedNode (635 bytes)
+Event: 6.072 Thread 0x00007fcb7411c800 nmethod 615 0x00007fcb652f0490 code [0x00007fcb652f0c00, 0x00007fcb652f7148]
+Event: 6.080 Thread 0x00007fcb74119800 nmethod 613 0x00007fcb652ed950 code [0x00007fcb652edb20, 0x00007fcb652ee518]
+Event: 6.080 Thread 0x00007fcb74119800  618  s    4       java.util.Vector::addElement (38 bytes)
+Event: 6.082 Thread 0x00007fcb74119800 nmethod 618 0x00007fcb652fd050 code [0x00007fcb652fd1c0, 0x00007fcb652fd5a8]
+Event: 6.082 Thread 0x00007fcb74119800  616       4       java.util.HashMap$KeyIterator::next (8 bytes)
+Event: 6.085 Thread 0x00007fcb74119800 nmethod 616 0x00007fcb652e0490 code [0x00007fcb652e05e0, 0x00007fcb652e0818]
+Event: 6.085 Thread 0x00007fcb74119800  617  s    4       java.util.Vector::elementAt (48 bytes)
+Event: 6.087 Thread 0x00007fcb74119800 nmethod 617 0x00007fcb652fb1d0 code [0x00007fcb652fb320, 0x00007fcb652fb598]
+Event: 6.087 Thread 0x00007fcb74119800  543       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PRTokeniser::getFilePointer (8 bytes)
+Event: 6.088 Thread 0x00007fcb74119800 nmethod 543 0x00007fcb652fd750 code [0x00007fcb652fd8a0, 0x00007fcb652fd9e8]
+Event: 6.091 Thread 0x00007fcb74119800  619 %     4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::removeUnusedNode @ 14 (635 bytes)
+Event: 6.104 Thread 0x00007fcb7411c800  621   !   3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::getPdfObject (92 bytes)
+Event: 6.105 Thread 0x00007fcb7411c800 nmethod 621 0x00007fcb652ef4d0 code [0x00007fcb652ef6c0, 0x00007fcb652efed8]
+Event: 6.167 Thread 0x00007fcb74119800 nmethod 619% 0x00007fcb65302a90 code [0x00007fcb65302f20, 0x00007fcb65306658]
+Event: 6.167 Thread 0x00007fcb74119800  620       4       java.util.AbstractCollection::toArray (147 bytes)
+Event: 6.175 Thread 0x00007fcb74119800 nmethod 620 0x00007fcb653001d0 code [0x00007fcb65300360, 0x00007fcb65300858]
+Event: 6.175 Thread 0x00007fcb74119800  623 %     4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::removeUnusedNode @ 14 (635 bytes)
+Event: 6.251 Thread 0x00007fcb74119800 nmethod 623% 0x00007fcb6530ead0 code [0x00007fcb6530ef60, 0x00007fcb65312638]
+Event: 6.251 Thread 0x00007fcb74119800  625       4       java.util.AbstractCollection::toArray (147 bytes)
+Event: 6.260 Thread 0x00007fcb74119800 nmethod 625 0x00007fcb65301d50 code [0x00007fcb65301ee0, 0x00007fcb65302418]
+Event: 6.260 Thread 0x00007fcb74119800  626       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfDictionary::getKeys (8 bytes)
+Event: 6.262 Thread 0x00007fcb74119800 nmethod 626 0x00007fcb652ed590 code [0x00007fcb652ed6e0, 0x00007fcb652ed838]
+Event: 6.262 Thread 0x00007fcb74119800  627       4       java.util.HashMap::keySet (25 bytes)
+Event: 6.263 Thread 0x00007fcb74119800 nmethod 627 0x00007fcb652deb90 code [0x00007fcb652dece0, 0x00007fcb652dedf8]
+Event: 6.263 Thread 0x00007fcb74119800  622       4       java.util.HashMap$KeySet::iterator (12 bytes)
+Event: 6.267 Thread 0x00007fcb74119800 nmethod 622 0x00007fcb652fe050 code [0x00007fcb652fe1c0, 0x00007fcb652fe538]
+Event: 6.267 Thread 0x00007fcb74119800  628   !   4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::getPdfObject (92 bytes)
+Event: 6.268 Thread 0x00007fcb74119800 nmethod 628 0x00007fcb652fdb50 code [0x00007fcb652fdcc0, 0x00007fcb652fde58]
+Event: 6.268 Thread 0x00007fcb74119800  624       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfDictionary::size (8 bytes)
+Event: 6.268 Thread 0x00007fcb74119800 nmethod 624 0x00007fcb652d0f50 code [0x00007fcb652d10a0, 0x00007fcb652d1118]
+Event: 6.398 Thread 0x00007fcb7411c800  629 %     3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::removeUnusedObjects @ 86 (119 bytes)
+Event: 6.399 Thread 0x00007fcb7411c800 nmethod 629% 0x00007fcb6530d010 code [0x00007fcb6530d280, 0x00007fcb6530e068]
+Event: 6.399 Thread 0x00007fcb7411c800  630  s    3       java.lang.StringBuffer::append (13 bytes)
+Event: 6.399 Thread 0x00007fcb7411c800 nmethod 630 0x00007fcb653017d0 code [0x00007fcb65301940, 0x00007fcb65301c68]
+Event: 6.400 Thread 0x00007fcb7411c800  631   !   3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfEncodings::convertToString (354 bytes)
+Event: 6.401 Thread 0x00007fcb7411c800 nmethod 631 0x00007fcb65315c10 code [0x00007fcb65315fc0, 0x00007fcb65317fd8]
+Event: 6.401 Thread 0x00007fcb7411c800  632       3       java.lang.String::<init> (15 bytes)
+Event: 6.402 Thread 0x00007fcb7411c800 nmethod 632 0x00007fcb65301090 code [0x00007fcb65301220, 0x00007fcb65301608]
+Event: 6.402 Thread 0x00007fcb7411c800  635       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfString::toUnicodeString (5 bytes)
+Event: 6.402 Thread 0x00007fcb7411c800 nmethod 635 0x00007fcb652fccd0 code [0x00007fcb652fce40, 0x00007fcb652fcfc8]
+Event: 6.402 Thread 0x00007fcb7411c800  642       3       java.lang.Math::getExponent (17 bytes)
+Event: 6.402 Thread 0x00007fcb7411c800 nmethod 642 0x00007fcb652fc990 code [0x00007fcb652fcae0, 0x00007fcb652fcc50]
+Event: 6.402 Thread 0x00007fcb7411c800  643       2       java.util.HashMap$EntryIterator::next (5 bytes)
+Event: 6.402 Thread 0x00007fcb7411c800 nmethod 643 0x00007fcb652fc610 code [0x00007fcb652fc780, 0x00007fcb652fc8e8]
+Event: 6.402 Thread 0x00007fcb7411c800  636       3       java.lang.Math::floor (5 bytes)
+Event: 6.402 Thread 0x00007fcb7411c800 nmethod 636 0x00007fcb652fc1d0 code [0x00007fcb652fc360, 0x00007fcb652fc528]
+Event: 6.402 Thread 0x00007fcb7411c800  638       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfString::getValue (66 bytes)
+Event: 6.402 Thread 0x00007fcb74119800  637       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::releaseLastXrefPartial (76 bytes)
+Event: 6.402 Thread 0x00007fcb7411c800 nmethod 638 0x00007fcb652fba90 code [0x00007fcb652fbc20, 0x00007fcb652fc0a8]
+Event: 6.402 Thread 0x00007fcb7411c800  639       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfString::isUnicode (27 bytes)
+Event: 6.402 Thread 0x00007fcb7411c800 nmethod 639 0x00007fcb652ffd50 code [0x00007fcb652ffec0, 0x00007fcb65300110]
+Event: 6.403 Thread 0x00007fcb7411c800  641       3       java.lang.StrictMath::floorOrCeil (128 bytes)
+Event: 6.403 Thread 0x00007fcb7411c800 nmethod 641 0x00007fcb652ff650 code [0x00007fcb652ff7e0, 0x00007fcb652ffc70]
+Event: 6.403 Thread 0x00007fcb7411c800  644       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfObject::isArray (14 bytes)
+Event: 6.403 Thread 0x00007fcb7411c800 nmethod 644 0x00007fcb652fb6d0 code [0x00007fcb652fb840, 0x00007fcb652fb9f0]
+Event: 6.403 Thread 0x00007fcb7411c800  645       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::getNameArray (68 bytes)
+Event: 6.403 Thread 0x00007fcb74119800 nmethod 637 0x00007fcb6530a050 code [0x00007fcb6530a1a0, 0x00007fcb6530a258]
+Event: 6.403 Thread 0x00007fcb74119800  634       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::getPdfObjectRelease (11 bytes)
+Event: 6.403 Thread 0x00007fcb7411c800 nmethod 645 0x00007fcb6530bcd0 code [0x00007fcb6530bf00, 0x00007fcb6530cc88]
+Event: 6.408 Thread 0x00007fcb74119800 nmethod 634 0x00007fcb652fe890 code [0x00007fcb652fea80, 0x00007fcb652ff180]
+Event: 6.408 Thread 0x00007fcb74119800  640       4       java.util.HashMap::put (13 bytes)
+Event: 6.409 Thread 0x00007fcb74119800 nmethod 640 0x00007fcb65309c10 code [0x00007fcb65309d60, 0x00007fcb65309e88]
+Event: 6.409 Thread 0x00007fcb7411c800  647       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfDictionary::put (34 bytes)
+Event: 6.410 Thread 0x00007fcb7411c800 nmethod 647 0x00007fcb6530add0 code [0x00007fcb6530afc0, 0x00007fcb6530b8f8]
+Event: 6.410 Thread 0x00007fcb7411c800  648       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::releaseLastXrefPartial (34 bytes)
+Event: 6.410 Thread 0x00007fcb7411c800 nmethod 648 0x00007fcb6531a590 code [0x00007fcb6531a740, 0x00007fcb6531ad18]
+Event: 6.410 Thread 0x00007fcb7411c800  649       2       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfArray::size (8 bytes)
+Event: 6.410 Thread 0x00007fcb7411c800 nmethod 649 0x00007fcb6530aa90 code [0x00007fcb6530abe0, 0x00007fcb6530ad30]
+Event: 6.410 Thread 0x00007fcb7411c800  650       2       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfObject::isDictionary (15 bytes)
+Event: 6.410 Thread 0x00007fcb7411c800 nmethod 650 0x00007fcb6530a750 code [0x00007fcb6530a8a0, 0x00007fcb6530aa10]
+Event: 6.410 Thread 0x00007fcb7411c800  651       2       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfArray::getPdfObject (12 bytes)
+Event: 6.411 Thread 0x00007fcb7411c800 nmethod 651 0x00007fcb65319e90 code [0x00007fcb6531a020, 0x00007fcb6531a2d8]
+Event: 6.411 Thread 0x00007fcb7411c800  652       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::replaceNamedDestination (272 bytes)
+Event: 6.414 Thread 0x00007fcb7411c800 nmethod 652 0x00007fcb6531b0d0 code [0x00007fcb6531b780, 0x00007fcb653203e8]
+Event: 6.414 Thread 0x00007fcb7411c800  653       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::setXrefPartialObject (23 bytes)
+Event: 6.414 Thread 0x00007fcb7411c800 nmethod 653 0x00007fcb65319290 code [0x00007fcb65319440, 0x00007fcb65319a18]
+Event: 6.414 Thread 0x00007fcb7411c800  655       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfString::toString (5 bytes)
+Event: 6.414 Thread 0x00007fcb7411c800 nmethod 655 0x00007fcb6530a350 code [0x00007fcb6530a4c0, 0x00007fcb6530a648]
+Event: 6.414 Thread 0x00007fcb7411c800  660       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfObject::isString (14 bytes)
+Event: 6.414 Thread 0x00007fcb7411c800 nmethod 660 0x00007fcb65323610 code [0x00007fcb65323780, 0x00007fcb65323930]
+Event: 6.414 Thread 0x00007fcb7411c800  646       3       java.util.HashMap$Node::setValue (12 bytes)
+Event: 6.415 Thread 0x00007fcb7411c800 nmethod 646 0x00007fcb653239d0 code [0x00007fcb65323b20, 0x00007fcb65323c90]
+Event: 6.415 Thread 0x00007fcb74119800  656   !   4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfEncodings::convertToString (354 bytes)
+Event: 6.421 Thread 0x00007fcb7411c800  661       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfName::compareTo (92 bytes)
+Event: 6.422 Thread 0x00007fcb7411c800 nmethod 661 0x00007fcb65323d10 code [0x00007fcb65323ea0, 0x00007fcb653243b0]
+Event: 6.422 Thread 0x00007fcb7411c800  662       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader$PageRefs::size (20 bytes)
+Event: 6.422 Thread 0x00007fcb7411c800 nmethod 662 0x00007fcb653245d0 code [0x00007fcb65324740, 0x00007fcb65324910]
+Event: 6.426 Thread 0x00007fcb74119800 nmethod 656 0x00007fcb65327f10 code [0x00007fcb653280c0, 0x00007fcb653289b8]
+Event: 6.426 Thread 0x00007fcb74119800  654       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::releaseLastXrefPartial (34 bytes)
+Event: 6.427 Thread 0x00007fcb74119800 nmethod 654 0x00007fcb652d2490 code [0x00007fcb652d25e0, 0x00007fcb652d2658]
+Event: 6.427 Thread 0x00007fcb74119800  663       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::replaceNamedDestination (272 bytes)
+Event: 6.437 Thread 0x00007fcb7411c800  665       3       java.util.HashMap::keySet (25 bytes)
+Event: 6.437 Thread 0x00007fcb7411c800 nmethod 665 0x00007fcb65327850 code [0x00007fcb653279e0, 0x00007fcb65327d70]
+Event: 6.496 Thread 0x00007fcb74119800 nmethod 663 0x00007fcb6532da10 code [0x00007fcb6532df80, 0x00007fcb653311f8]
+Event: 6.496 Thread 0x00007fcb74119800  664       4       java.util.AbstractCollection::toArray (147 bytes)
+Event: 6.506 Thread 0x00007fcb74119800 nmethod 664 0x00007fcb65325550 code [0x00007fcb653256e0, 0x00007fcb65325c98]
+Event: 6.506 Thread 0x00007fcb74119800  667       4       java.util.HashMap::keySet (25 bytes)
+Event: 6.507 Thread 0x00007fcb74119800 nmethod 667 0x00007fcb65325250 code [0x00007fcb653253a0, 0x00007fcb65325498]
+Event: 6.507 Thread 0x00007fcb74119800  666 %     4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::removeUnusedNode @ 14 (635 bytes)
+Event: 6.608 Thread 0x00007fcb74119800 nmethod 666% 0x00007fcb65339090 code [0x00007fcb65339540, 0x00007fcb6533cef8]
+Event: 6.608 Thread 0x00007fcb74119800  657       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfArray::size (8 bytes)
+Event: 6.608 Thread 0x00007fcb74119800 nmethod 657 0x00007fcb652faf10 code [0x00007fcb652fb060, 0x00007fcb652fb0d8]
+Event: 6.608 Thread 0x00007fcb74119800  668       4       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::removeUnusedNode (635 bytes)
+Event: 6.680 Thread 0x00007fcb74119800 nmethod 668 0x00007fcb65340710 code [0x00007fcb65340bc0, 0x00007fcb65343508]
+Event: 6.711 Thread 0x00007fcb7411c800  669       3       com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader::removeUnusedObjects (119 bytes)
+Event: 6.712 Thread 0x00007fcb7411c800 nmethod 669 0x00007fcb6532c150 code [0x00007fcb6532c3a0, 0x00007fcb6532d088]
+Event: 6.714 Thread 0x00007fcb7411c800  670       3       sun.nio.cs.UTF_8$Decoder::decode (779 bytes)
+Event: 6.719 Thread 0x00007fcb7411c800 nmethod 670 0x00007fcb65346b10 code [0x00007fcb65347140, 0x00007fcb6534bbf8]
+Event: 6.719 Thread 0x00007fcb7411c800  674       3       java.util.concurrent.ConcurrentHashMap::addCount (281 bytes)
+Event: 6.720 Thread 0x00007fcb7411c800 nmethod 674 0x00007fcb653267d0 code [0x00007fcb653269e0, 0x00007fcb653274a8]
+Event: 6.720 Thread 0x00007fcb7411c800  673       3       java.lang.String::concat (47 bytes)
+Event: 6.721 Thread 0x00007fcb7411c800 nmethod 673 0x00007fcb6532b450 code [0x00007fcb6532b620, 0x00007fcb6532bdd8]
+Event: 6.721 Thread 0x00007fcb7411c800  671       1       java.lang.StringCoding$StringDecoder::requestedCharsetName (5 bytes)
+Event: 6.721 Thread 0x00007fcb7411c800 nmethod 671 0x00007fcb65326510 code [0x00007fcb65326660, 0x00007fcb65326770]
+Event: 6.722 Thread 0x00007fcb7411c800  675   !   3       java.util.zip.ZipFile$ZipFileInputStream::close (110 bytes)
+Event: 6.723 Thread 0x00007fcb7411c800 nmethod 675 0x00007fcb6532a6d0 code [0x00007fcb6532a880, 0x00007fcb6532b0b8]
+Event: 6.723 Thread 0x00007fcb7411c800  676       3       java.util.jar.JarFile::maybeInstantiateVerifier (96 bytes)
+Event: 6.724 Thread 0x00007fcb7411c800 nmethod 676 0x00007fcb653291d0 code [0x00007fcb65329400, 0x00007fcb6532a088]
+Event: 6.725 Thread 0x00007fcb7411c800  677       3       java.lang.String::regionMatches (149 bytes)
+Event: 6.726 Thread 0x00007fcb7411c800 nmethod 677 0x00007fcb653377d0 code [0x00007fcb65337a40, 0x00007fcb65338718]
+Event: 6.726 Thread 0x00007fcb7411c800  678       3       java.lang.Character::isHighSurrogate (18 bytes)
+Event: 6.726 Thread 0x00007fcb7411c800 nmethod 678 0x00007fcb65337410 code [0x00007fcb65337580, 0x00007fcb65337750]
+Event: 6.726 Thread 0x00007fcb7411c800  680       3       java.lang.Character::codePointAt (51 bytes)
+Event: 6.726 Thread 0x00007fcb7411c800 nmethod 680 0x00007fcb65336a10 code [0x00007fcb65336bc0, 0x00007fcb65337268]
+Event: 6.726 Thread 0x00007fcb7411c800  681       3       org.apache.commons.lang3.text.translate.AggregateTranslator::translate (54 bytes)
+Event: 6.726 Thread 0x00007fcb7411c800 nmethod 681 0x00007fcb65336390 code [0x00007fcb65336520, 0x00007fcb65336888]
+Event: 6.726 Thread 0x00007fcb7411c800  679       1       java.nio.Buffer::position (5 bytes)
+Event: 6.726 Thread 0x00007fcb7411c800 nmethod 679 0x00007fcb653360d0 code [0x00007fcb65336220, 0x00007fcb65336330]
+Event: 6.727 Thread 0x00007fcb7411c800  682       3       java.lang.Byte::<init> (10 bytes)
+Event: 6.727 Thread 0x00007fcb7411c800 nmethod 682 0x00007fcb65335c50 code [0x00007fcb65335dc0, 0x00007fcb65335fd0]
+Event: 6.728 Thread 0x00007fcb7411c800  683       1       java.nio.Buffer::limit (5 bytes)
+Event: 6.728 Thread 0x00007fcb7411c800 nmethod 683 0x00007fcb65334f10 code [0x00007fcb65335060, 0x00007fcb65335170]
+Event: 6.728 Thread 0x00007fcb7411c800  684       1       java.util.Formatter$Flags::valueOf (5 bytes)
+Event: 6.728 Thread 0x00007fcb7411c800 nmethod 684 0x00007fcb65334c50 code [0x00007fcb65334da0, 0x00007fcb65334eb0]
+Event: 6.729 Thread 0x00007fcb7411c800  685       3       java.util.Formatter$Flags::contains (22 bytes)
+Event: 6.729 Thread 0x00007fcb7411c800 nmethod 685 0x00007fcb65334810 code [0x00007fcb65334980, 0x00007fcb65334b90]
+Event: 6.729 Thread 0x00007fcb7411c800  686       3       java.util.regex.Pattern$BmpCharProperty::match (50 bytes)
+Event: 6.729 Thread 0x00007fcb7411c800 nmethod 686 0x00007fcb65334090 code [0x00007fcb65334220, 0x00007fcb653346c8]
+Event: 6.729 Thread 0x00007fcb7411c800  688       3       java.io.PrintStream::ensureOpen (18 bytes)
+Event: 6.730 Thread 0x00007fcb7411c800 nmethod 688 0x00007fcb6534f210 code [0x00007fcb6534f380, 0x00007fcb6534f5e8]
+Event: 6.730 Thread 0x00007fcb7411c800  687       3       java.nio.ByteBuffer::arrayOffset (35 bytes)
+Event: 6.730 Thread 0x00007fcb7411c800 nmethod 687 0x00007fcb6534f6d0 code [0x00007fcb6534f860, 0x00007fcb6534fb78]
+Event: 6.730 Thread 0x00007fcb7411c800  689       3       sun.net.www.ParseUtil::encodePath (336 bytes)
+Event: 6.731 Thread 0x00007fcb7411c800 nmethod 689 0x00007fcb6534fcd0 code [0x00007fcb6534ff40, 0x00007fcb65350f38]
+Event: 6.731 Thread 0x00007fcb7411c800  690   !   3       sun.misc.URLClassPath$JarLoader::ensureOpen (36 bytes)
+Event: 6.731 Thread 0x00007fcb7411c800 nmethod 690 0x00007fcb653516d0 code [0x00007fcb65351880, 0x00007fcb65351d58]
+
+GC Heap History (9 events):
+Event: 1.917 GC heap before
+{Heap before GC invocations=1 (full 0):
+ PSYoungGen      total 72704K, used 62464K [0x000000076eb00000, 0x0000000773c00000, 0x00000007c0000000)
+  eden space 62464K, 100% used [0x000000076eb00000,0x0000000772800000,0x0000000772800000)
+  from space 10240K, 0% used [0x0000000773200000,0x0000000773200000,0x0000000773c00000)
+  to   space 10240K, 0% used [0x0000000772800000,0x0000000772800000,0x0000000773200000)
+ ParOldGen       total 166912K, used 0K [0x00000006cc000000, 0x00000006d6300000, 0x000000076eb00000)
+  object space 166912K, 0% used [0x00000006cc000000,0x00000006cc000000,0x00000006d6300000)
+ Metaspace       used 4106K, capacity 5048K, committed 5376K, reserved 1056768K
+  class space    used 373K, capacity 424K, committed 512K, reserved 1048576K
+Event: 1.941 GC heap after
+Heap after GC invocations=1 (full 0):
+ PSYoungGen      total 72704K, used 10214K [0x000000076eb00000, 0x0000000777900000, 0x00000007c0000000)
+  eden space 62464K, 0% used [0x000000076eb00000,0x000000076eb00000,0x0000000772800000)
+  from space 10240K, 99% used [0x0000000772800000,0x00000007731f9a80,0x0000000773200000)
+  to   space 10240K, 0% used [0x0000000776f00000,0x0000000776f00000,0x0000000777900000)
+ ParOldGen       total 166912K, used 5347K [0x00000006cc000000, 0x00000006d6300000, 0x000000076eb00000)
+  object space 166912K, 3% used [0x00000006cc000000,0x00000006cc538ea8,0x00000006d6300000)
+ Metaspace       used 4106K, capacity 5048K, committed 5376K, reserved 1056768K
+  class space    used 373K, capacity 424K, committed 512K, reserved 1048576K
+}
+Event: 3.897 GC heap before
+{Heap before GC invocations=2 (full 0):
+ PSYoungGen      total 72704K, used 72678K [0x000000076eb00000, 0x0000000777900000, 0x00000007c0000000)
+  eden space 62464K, 100% used [0x000000076eb00000,0x0000000772800000,0x0000000772800000)
+  from space 10240K, 99% used [0x0000000772800000,0x00000007731f9a80,0x0000000773200000)
+  to   space 10240K, 0% used [0x0000000776f00000,0x0000000776f00000,0x0000000777900000)
+ ParOldGen       total 166912K, used 5347K [0x00000006cc000000, 0x00000006d6300000, 0x000000076eb00000)
+  object space 166912K, 3% used [0x00000006cc000000,0x00000006cc538ea8,0x00000006d6300000)
+ Metaspace       used 4106K, capacity 5048K, committed 5376K, reserved 1056768K
+  class space    used 373K, capacity 424K, committed 512K, reserved 1048576K
+Event: 3.935 GC heap after
+Heap after GC invocations=2 (full 0):
+ PSYoungGen      total 135168K, used 10213K [0x000000076eb00000, 0x0000000777900000, 0x00000007c0000000)
+  eden space 124928K, 0% used [0x000000076eb00000,0x000000076eb00000,0x0000000776500000)
+  from space 10240K, 99% used [0x0000000776f00000,0x00000007778f9460,0x0000000777900000)
+  to   space 10240K, 0% used [0x0000000776500000,0x0000000776500000,0x0000000776f00000)
+ ParOldGen       total 166912K, used 19155K [0x00000006cc000000, 0x00000006d6300000, 0x000000076eb00000)
+  object space 166912K, 11% used [0x00000006cc000000,0x00000006cd2b4ed8,0x00000006d6300000)
+ Metaspace       used 4106K, capacity 5048K, committed 5376K, reserved 1056768K
+  class space    used 373K, capacity 424K, committed 512K, reserved 1048576K
+}
+Event: 5.545 GC heap before
+{Heap before GC invocations=3 (full 0):
+ PSYoungGen      total 135168K, used 135141K [0x000000076eb00000, 0x0000000777900000, 0x00000007c0000000)
+  eden space 124928K, 100% used [0x000000076eb00000,0x0000000776500000,0x0000000776500000)
+  from space 10240K, 99% used [0x0000000776f00000,0x00000007778f9460,0x0000000777900000)
+  to   space 10240K, 0% used [0x0000000776500000,0x0000000776500000,0x0000000776f00000)
+ ParOldGen       total 166912K, used 19155K [0x00000006cc000000, 0x00000006d6300000, 0x000000076eb00000)
+  object space 166912K, 11% used [0x00000006cc000000,0x00000006cd2b4ed8,0x00000006d6300000)
+ Metaspace       used 4585K, capacity 5272K, committed 5376K, reserved 1056768K
+  class space    used 417K, capacity 456K, committed 512K, reserved 1048576K
+Event: 5.608 GC heap after
+Heap after GC invocations=3 (full 0):
+ PSYoungGen      total 135168K, used 10230K [0x000000076eb00000, 0x000000077f300000, 0x00000007c0000000)
+  eden space 124928K, 0% used [0x000000076eb00000,0x000000076eb00000,0x0000000776500000)
+  from space 10240K, 99% used [0x0000000776500000,0x0000000776efdaa8,0x0000000776f00000)
+  to   space 10240K, 0% used [0x000000077e900000,0x000000077e900000,0x000000077f300000)
+ ParOldGen       total 166912K, used 45055K [0x00000006cc000000, 0x00000006d6300000, 0x000000076eb00000)
+  object space 166912K, 26% used [0x00000006cc000000,0x00000006cebfff18,0x00000006d6300000)
+ Metaspace       used 4585K, capacity 5272K, committed 5376K, reserved 1056768K
+  class space    used 417K, capacity 456K, committed 512K, reserved 1048576K
+}
+Event: 5.745 GC heap before
+{Heap before GC invocations=4 (full 0):
+ PSYoungGen      total 135168K, used 135158K [0x000000076eb00000, 0x000000077f300000, 0x00000007c0000000)
+  eden space 124928K, 100% used [0x000000076eb00000,0x0000000776500000,0x0000000776500000)
+  from space 10240K, 99% used [0x0000000776500000,0x0000000776efdaa8,0x0000000776f00000)
+  to   space 10240K, 0% used [0x000000077e900000,0x000000077e900000,0x000000077f300000)
+ ParOldGen       total 166912K, used 45055K [0x00000006cc000000, 0x00000006d6300000, 0x000000076eb00000)
+  object space 166912K, 26% used [0x00000006cc000000,0x00000006cebfff18,0x00000006d6300000)
+ Metaspace       used 4599K, capacity 5272K, committed 5376K, reserved 1056768K
+  class space    used 417K, capacity 456K, committed 512K, reserved 1048576K
+Event: 5.817 GC heap after
+Heap after GC invocations=4 (full 0):
+ PSYoungGen      total 260096K, used 10229K [0x000000076eb00000, 0x000000077f300000, 0x00000007c0000000)
+  eden space 249856K, 0% used [0x000000076eb00000,0x000000076eb00000,0x000000077df00000)
+  from space 10240K, 99% used [0x000000077e900000,0x000000077f2fd4a8,0x000000077f300000)
+  to   space 10240K, 0% used [0x000000077df00000,0x000000077df00000,0x000000077e900000)
+ ParOldGen       total 166912K, used 72863K [0x00000006cc000000, 0x00000006d6300000, 0x000000076eb00000)
+  object space 166912K, 43% used [0x00000006cc000000,0x00000006d0727f18,0x00000006d6300000)
+ Metaspace       used 4599K, capacity 5272K, committed 5376K, reserved 1056768K
+  class space    used 417K, capacity 456K, committed 512K, reserved 1048576K
+}
+Event: 6.732 GC heap before
+{Heap before GC invocations=5 (full 0):
+ PSYoungGen      total 260096K, used 260085K [0x000000076eb00000, 0x000000077f300000, 0x00000007c0000000)
+  eden space 249856K, 100% used [0x000000076eb00000,0x000000077df00000,0x000000077df00000)
+  from space 10240K, 99% used [0x000000077e900000,0x000000077f2fd4a8,0x000000077f300000)
+  to   space 10240K, 0% used [0x000000077df00000,0x000000077df00000,0x000000077e900000)
+ ParOldGen       total 166912K, used 72863K [0x00000006cc000000, 0x00000006d6300000, 0x000000076eb00000)
+  object space 166912K, 43% used [0x00000006cc000000,0x00000006d0727f18,0x00000006d6300000)
+ Metaspace       used 5042K, capacity 5504K, committed 5632K, reserved 1056768K
+  class space    used 454K, capacity 496K, committed 512K, reserved 1048576K
+
+Deoptimization events (42 events):
+Event: 4.941 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb651df618 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader.readPRObject()Lcom/gitlab/pdftk_java/com/lowagie/text/pdf/PdfObject; @ 505
+Event: 4.943 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb651c9a24 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PRTokeniser.nextToken()Z @ 907
+Event: 4.943 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb651da8ac method=sun.misc.FloatingDecimal$ASCIIToBinaryBuffer.doubleValue()D @ 135
+Event: 4.947 Thread 0x00007fcb7404b800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fcb651dba78 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 4.947 Thread 0x00007fcb7404b800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fcb651dba78 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 4.947 Thread 0x00007fcb7404b800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fcb651dba78 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 4.947 Thread 0x00007fcb7404b800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fcb651dba78 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 5.301 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb6521456c method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfObject.isIndirect()Z @ 6
+Event: 5.301 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb65213a54 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfName.equals(Ljava/lang/Object;)Z @ 2
+Event: 5.301 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb652140bc method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfName.compareTo(Ljava/lang/Object;)I @ 45
+Event: 5.310 Thread 0x00007fcb7404b800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fcb652118f4 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 56
+Event: 5.310 Thread 0x00007fcb7404b800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007fcb652118f4 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 56
+Event: 5.314 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb651794a8 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 49
+Event: 5.322 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb65157e88 method=java.io.ByteArrayOutputStream.ensureCapacity(I)V @ 7
+Event: 5.337 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb65154f94 method=java.io.ByteArrayOutputStream.ensureCapacity(I)V @ 7
+Event: 5.353 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb6520eb14 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader.releaseLastXrefPartial(Lcom/gitlab/pdftk_java/com/lowagie/text/pdf/PdfObject;)V @ 1
+Event: 5.353 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb651557b4 method=java.io.ByteArrayInputStream.read([BII)I @ 63
+Event: 5.353 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb651a6190 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.RandomAccessFileOrArray.read()I @ 25
+Event: 5.353 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb651d9668 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.RandomAccessFileOrArray.seek(I)V @ 15
+Event: 5.353 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb651d5074 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.RandomAccessFileOrArray.insureOpen()V @ 4
+Event: 5.353 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb651d3620 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.RandomAccessFileOrArray.seek(I)V @ 15
+Event: 6.005 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb652829c0 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader.readPRObject()Lcom/gitlab/pdftk_java/com/lowagie/text/pdf/PdfObject; @ 445
+Event: 6.011 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb651ea34c method=java.util.HashMap.putMapEntries(Ljava/util/Map;Z)V @ 8
+Event: 6.011 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb6528bf90 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.IntHashtable.containsKey(I)Z @ 24
+Event: 6.012 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb652b6184 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader.releaseLastXrefPartial(Lcom/gitlab/pdftk_java/com/lowagie/text/pdf/PdfObject;)V @ 9
+Event: 6.012 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb652a8fc8 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 116
+Event: 6.012 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb6527cb64 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 116
+Event: 6.012 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb6516a6f8 method=java.util.HashMap.getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; @ 49
+Event: 6.048 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb652dd7a4 method=java.util.Vector.ensureCapacityHelper(I)V @ 7
+Event: 6.168 Thread 0x00007fcb7404b800 Uncommon trap: reason=range_check action=make_not_entrant pc=0x00007fcb65304ecc method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader.removeUnusedNode(Lcom/gitlab/pdftk_java/com/lowagie/text/pdf/PdfObject;[Z)V @ 217
+Event: 6.175 Thread 0x00007fcb7404b800 Uncommon trap: reason=predicate action=maybe_recompile pc=0x00007fcb65300744 method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 49
+Event: 6.397 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb65310238 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfReader.removeUnusedNode(Lcom/gitlab/pdftk_java/com/lowagie/text/pdf/PdfObject;[Z)V @ 536
+Event: 6.397 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb6520f004 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfObject.isNull()Z @ 6
+Event: 6.399 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb652b8708 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfEncodings.convertToString([BLjava/lang/String;)Ljava/lang/String; @ 10
+Event: 6.404 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb652c1150 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfName.compareTo(Ljava/lang/Object;)I @ 59
+Event: 6.431 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb652dedb4 method=java.util.HashMap.keySet()Ljava/util/Set; @ 6
+Event: 6.431 Thread 0x00007fcb7404b800 Uncommon trap: reason=array_check action=maybe_recompile pc=0x00007fcb653021f8 method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 119
+Event: 6.431 Thread 0x00007fcb7404b800 Uncommon trap: reason=array_check action=maybe_recompile pc=0x00007fcb653021f8 method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 119
+Event: 6.431 Thread 0x00007fcb7404b800 Uncommon trap: reason=array_check action=maybe_recompile pc=0x00007fcb653021f8 method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 119
+Event: 6.431 Thread 0x00007fcb7404b800 Uncommon trap: reason=array_check action=maybe_recompile pc=0x00007fcb653021f8 method=java.util.AbstractCollection.toArray([Ljava/lang/Object;)[Ljava/lang/Object; @ 119
+Event: 6.609 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb652ed7e8 method=java.util.HashMap.keySet()Ljava/util/Set; @ 6
+Event: 6.714 Thread 0x00007fcb7404b800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007fcb65328868 method=com.gitlab.pdftk_java.com.lowagie.text.pdf.PdfEncodings.convertToString([BLjava/lang/String;)Ljava/lang/String; @ 72
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (2 events):
+Event: 0.019 Thread 0x00007fcb7404b800 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.defineClass(Ljava/lang/String;[BII)Ljava/lang/Class; name or signature does not match> (0x000000076eb07cd8) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64
+Event: 0.019 Thread 0x00007fcb7404b800 Exception <a 'java/lang/NoSuchMethodError': Method sun.misc.Unsafe.prefetchRead(Ljava/lang/Object;J)V name or signature does not match> (0x000000076eb07fc0) thrown at [/builddir/build/BUILD/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/shenandoah-jdk8u3
+
+Events (250 events):
+Event: 5.651 Executing VM operation: RevokeBias
+Event: 5.651 Executing VM operation: RevokeBias done
+Event: 5.651 Executing VM operation: RevokeBias
+Event: 5.651 Executing VM operation: RevokeBias done
+Event: 5.651 Executing VM operation: RevokeBias
+Event: 5.651 Executing VM operation: RevokeBias done
+Event: 5.651 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.652 Executing VM operation: BulkRevokeBias
+Event: 5.652 Executing VM operation: BulkRevokeBias done
+Event: 5.652 Executing VM operation: RevokeBias
+Event: 5.652 Executing VM operation: RevokeBias done
+Event: 5.745 Executing VM operation: ParallelGCFailedAllocation
+Event: 5.817 Executing VM operation: ParallelGCFailedAllocation done
+Event: 5.820 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb6526dfb0 sp=0x00007fcb7d91b250
+Event: 5.820 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb650474c4 sp=0x00007fcb7d91aff8 mode 0
+Event: 5.830 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.831 Executing VM operation: RevokeBias
+Event: 5.831 Executing VM operation: RevokeBias done
+Event: 5.832 Executing VM operation: RevokeBias
+Event: 5.832 Executing VM operation: RevokeBias done
+Event: 5.832 Executing VM operation: RevokeBias
+Event: 5.832 Executing VM operation: RevokeBias done
+Event: 5.832 Executing VM operation: RevokeBias
+Event: 5.832 Executing VM operation: RevokeBias done
+Event: 5.832 Executing VM operation: RevokeBias
+Event: 5.832 Executing VM operation: RevokeBias done
+Event: 5.832 Executing VM operation: RevokeBias
+Event: 5.832 Executing VM operation: RevokeBias done
+Event: 5.832 Executing VM operation: BulkRevokeBias
+Event: 5.832 Executing VM operation: BulkRevokeBias done
+Event: 5.919 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb6525e27d sp=0x00007fcb7d91ac70
+Event: 5.919 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb650474c4 sp=0x00007fcb7d91aa10 mode 0
+Event: 5.948 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb65241ad7 sp=0x00007fcb7d91ae20
+Event: 5.948 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb650474c4 sp=0x00007fcb7d91ab28 mode 0
+Event: 5.980 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb6525e27d sp=0x00007fcb7d91ac70
+Event: 5.980 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb650474c4 sp=0x00007fcb7d91aa10 mode 0
+Event: 6.005 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb652829c0
+Event: 6.005 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb652829c0 sp=0x00007fcb7d91b010
+Event: 6.005 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b008 mode 2
+Event: 6.009 loading class com/gitlab/pdftk_java/com/lowagie/text/pdf/PdfReader$PageRefs
+Event: 6.009 loading class com/gitlab/pdftk_java/com/lowagie/text/pdf/PdfReader$PageRefs done
+Event: 6.011 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb651ea34c
+Event: 6.011 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb651ea34c sp=0x00007fcb7d91b050
+Event: 6.011 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b020 mode 2
+Event: 6.011 loading class java/util/HashMap$KeySet
+Event: 6.011 loading class java/util/HashMap$KeySet done
+Event: 6.011 loading class java/util/HashMap$KeyIterator
+Event: 6.011 loading class java/util/HashMap$KeyIterator done
+Event: 6.011 Executing VM operation: Deoptimize
+Event: 6.011 Executing VM operation: Deoptimize done
+Event: 6.011 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb6528bf90
+Event: 6.011 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb6528bf90 sp=0x00007fcb7d91b3f0
+Event: 6.011 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b398 mode 2
+Event: 6.012 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb652b6184
+Event: 6.012 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb652b6184 sp=0x00007fcb7d91b350
+Event: 6.012 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b2b8 mode 2
+Event: 6.012 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb652a8fc8
+Event: 6.012 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb652a8fc8 sp=0x00007fcb7d91b340
+Event: 6.012 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b228 mode 2
+Event: 6.012 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb6527cb64
+Event: 6.012 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb6527cb64 sp=0x00007fcb7d91b2f0
+Event: 6.012 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b228 mode 2
+Event: 6.012 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb6516a6f8
+Event: 6.012 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb6516a6f8 sp=0x00007fcb7d91b280
+Event: 6.012 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b228 mode 2
+Event: 6.048 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb652dd7a4
+Event: 6.048 Executing VM operation: RevokeBias
+Event: 6.048 Executing VM operation: RevokeBias done
+Event: 6.048 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb652dd7a4 sp=0x00007fcb7d91b310
+Event: 6.048 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b268 mode 2
+Event: 6.167 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb652e9219 sp=0x00007fcb7d91b220
+Event: 6.167 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb650474c4 sp=0x00007fcb7d91b108 mode 0
+Event: 6.168 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffffe4 fr.pc=0x00007fcb65304ecc
+Event: 6.168 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb65304ecc sp=0x00007fcb7d91b360
+Event: 6.168 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b388 mode 2
+Event: 6.175 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff86 fr.pc=0x00007fcb65300744
+Event: 6.175 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb65300744 sp=0x00007fcb7d91b330
+Event: 6.175 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b310 mode 2
+Event: 6.397 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb65310238
+Event: 6.397 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb65310238 sp=0x00007fcb7d91b360
+Event: 6.397 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b390 mode 2
+Event: 6.397 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb6520f004
+Event: 6.397 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb6520f004 sp=0x00007fcb7d91b340
+Event: 6.397 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b2b8 mode 2
+Event: 6.398 loading class java/io/RandomAccessFile$1
+Event: 6.398 loading class java/io/RandomAccessFile$1 done
+Event: 6.398 loading class com/gitlab/pdftk_java/com/lowagie/text/pdf/PdfNameTree
+Event: 6.398 loading class com/gitlab/pdftk_java/com/lowagie/text/pdf/PdfNameTree done
+Event: 6.399 loading class com/gitlab/pdftk_java/com/lowagie/text/StringCompare
+Event: 6.399 loading class com/gitlab/pdftk_java/com/lowagie/text/StringCompare done
+Event: 6.399 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb652b8708
+Event: 6.399 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb652b8708 sp=0x00007fcb7d91b1f0
+Event: 6.399 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b1b0 mode 2
+Event: 6.399 loading class java/lang/StrictMath
+Event: 6.399 loading class java/lang/StrictMath done
+Event: 6.404 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb652c1150
+Event: 6.404 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb652c1150 sp=0x00007fcb7d91b430
+Event: 6.404 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b3c8 mode 2
+Event: 6.431 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb652dedb4
+Event: 6.431 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb652dedb4 sp=0x00007fcb7d91b360
+Event: 6.431 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b318 mode 2
+Event: 6.431 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffffd6 fr.pc=0x00007fcb653021f8
+Event: 6.431 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb653021f8 sp=0x00007fcb7d91b330
+Event: 6.431 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b2e8 mode 2
+Event: 6.431 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffffd6 fr.pc=0x00007fcb653021f8
+Event: 6.431 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb653021f8 sp=0x00007fcb7d91b330
+Event: 6.431 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b2e8 mode 2
+Event: 6.431 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffffd6 fr.pc=0x00007fcb653021f8
+Event: 6.431 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb653021f8 sp=0x00007fcb7d91b330
+Event: 6.431 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b2e8 mode 2
+Event: 6.431 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffffd6 fr.pc=0x00007fcb653021f8
+Event: 6.431 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb653021f8 sp=0x00007fcb7d91b330
+Event: 6.431 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b2e8 mode 2
+Event: 6.608 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb652f6cd8 sp=0x00007fcb7d91b390
+Event: 6.608 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb650474c4 sp=0x00007fcb7d91b248 mode 0
+Event: 6.608 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb652ed7e8
+Event: 6.609 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb652ed7e8 sp=0x00007fcb7d91b4a0
+Event: 6.609 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b408 mode 2
+Event: 6.712 loading class com/gitlab/pdftk_java/InputPdf$PagesReader
+Event: 6.712 loading class com/gitlab/pdftk_java/InputPdf$PagesReader done
+Event: 6.712 loading class java/util/HashSet
+Event: 6.712 loading class java/util/HashSet done
+Event: 6.713 loading class com/gitlab/pdftk_java/report
+Event: 6.713 loading class com/gitlab/pdftk_java/report done
+Event: 6.714 Thread 0x00007fcb7404b800 Uncommon trap: trap_request=0xffffff65 fr.pc=0x00007fcb65328868
+Event: 6.714 Thread 0x00007fcb7404b800 DEOPT PACKING pc=0x00007fcb65328868 sp=0x00007fcb7d91b5f0
+Event: 6.714 Thread 0x00007fcb7404b800 DEOPT UNPACKING pc=0x00007fcb6504547a sp=0x00007fcb7d91b588 mode 2
+Event: 6.714 loading class org/apache/commons/lang3/StringEscapeUtils
+Event: 6.714 loading class org/apache/commons/lang3/StringEscapeUtils done
+Event: 6.715 loading class org/apache/commons/lang3/text/translate/CharSequenceTranslator
+Event: 6.715 loading class org/apache/commons/lang3/text/translate/CharSequenceTranslator done
+Event: 6.716 loading class org/apache/commons/lang3/text/translate/AggregateTranslator
+Event: 6.716 loading class org/apache/commons/lang3/text/translate/AggregateTranslator done
+Event: 6.716 loading class org/apache/commons/lang3/StringEscapeUtils$CsvEscaper
+Event: 6.716 loading class org/apache/commons/lang3/StringEscapeUtils$CsvEscaper done
+Event: 6.716 loading class org/apache/commons/lang3/StringEscapeUtils$CsvUnescaper
+Event: 6.716 loading class org/apache/commons/lang3/StringEscapeUtils$CsvUnescaper done
+Event: 6.717 loading class org/apache/commons/lang3/text/translate/LookupTranslator
+Event: 6.717 loading class org/apache/commons/lang3/text/translate/LookupTranslator done
+Event: 6.717 loading class java/io/StringWriter
+Event: 6.717 loading class java/io/StringWriter done
+Event: 6.717 loading class org/apache/commons/lang3/text/translate/EntityArrays
+Event: 6.717 loading class org/apache/commons/lang3/text/translate/EntityArrays done
+Event: 6.719 loading class org/apache/commons/lang3/ArrayUtils
+Event: 6.719 loading class org/apache/commons/lang3/ArrayUtils done
+Event: 6.722 loading class org/apache/commons/lang3/text/translate/UnicodeEscaper
+Event: 6.722 loading class org/apache/commons/lang3/text/translate/UnicodeEscaper done
+Event: 6.722 loading class org/apache/commons/lang3/text/translate/CodePointTranslator
+Event: 6.722 loading class org/apache/commons/lang3/text/translate/CodePointTranslator done
+Event: 6.723 loading class org/apache/commons/lang3/text/translate/OctalUnescaper
+Event: 6.723 loading class org/apache/commons/lang3/text/translate/OctalUnescaper done
+Event: 6.723 loading class org/apache/commons/lang3/text/translate/UnicodeUnescaper
+Event: 6.723 loading class org/apache/commons/lang3/text/translate/UnicodeUnescaper done
+Event: 6.724 loading class org/apache/commons/lang3/text/translate/NumericEntityUnescaper
+Event: 6.724 loading class org/apache/commons/lang3/text/translate/NumericEntityUnescaper done
+Event: 6.724 loading class org/apache/commons/lang3/text/translate/NumericEntityUnescaper$OPTION
+Event: 6.724 loading class org/apache/commons/lang3/text/translate/NumericEntityUnescaper$OPTION done
+Event: 6.724 loading class java/util/Arrays$ArrayList
+Event: 6.724 loading class java/util/Arrays$ArrayList done
+Event: 6.724 loading class java/util/EnumSet
+Event: 6.724 loading class java/util/EnumSet done
+Event: 6.724 loading class java/util/AbstractList$Itr
+Event: 6.724 loading class java/util/AbstractList$Itr done
+Event: 6.724 loading class java/util/RegularEnumSet
+Event: 6.725 loading class java/util/RegularEnumSet done
+Event: 6.725 loading class org/apache/commons/lang3/text/translate/NumericEntityEscaper
+Event: 6.725 loading class org/apache/commons/lang3/text/translate/NumericEntityEscaper done
+Event: 6.726 loading class java/lang/Byte$ByteCache
+Event: 6.726 loading class java/lang/Byte$ByteCache done
+Event: 6.727 loading class java/util/Formatter
+Event: 6.727 loading class java/util/Formatter done
+Event: 6.727 loading class java/util/regex/Pattern$Ctype
+Event: 6.727 loading class java/util/regex/Pattern$Ctype done
+Event: 6.727 loading class java/util/regex/Pattern$5
+Event: 6.727 loading class java/util/regex/Pattern$5 done
+Event: 6.727 loading class java/util/Locale$Category
+Event: 6.727 loading class java/util/Locale$Category done
+Event: 6.727 loading class java/util/Locale$1
+Event: 6.727 loading class java/util/Locale$1 done
+Event: 6.727 loading class java/util/regex/ASCII
+Event: 6.727 loading class java/util/regex/ASCII done
+Event: 6.727 loading class java/util/Formatter$FormatSpecifier
+Event: 6.727 loading class java/util/Formatter$FormatString
+Event: 6.727 loading class java/util/Formatter$FormatString done
+Event: 6.728 loading class java/util/Formatter$FormatSpecifier done
+Event: 6.728 loading class java/util/Formatter$Flags
+Event: 6.728 loading class java/util/Formatter$Flags done
+Event: 6.728 loading class java/util/Formatter$Conversion
+Event: 6.728 loading class java/util/Formatter$Conversion done
+Event: 6.730 loading class com/gitlab/pdftk_java/PdfPageMedia
+Event: 6.730 loading class com/gitlab/pdftk_java/PdfPageMedia done
+Event: 6.730 loading class com/gitlab/pdftk_java/com/lowagie/text/Rectangle
+Event: 6.730 loading class com/gitlab/pdftk_java/com/lowagie/text/Rectangle done
+Event: 6.731 loading class com/gitlab/pdftk_java/com/lowagie/text/Element
+Event: 6.731 loading class com/gitlab/pdftk_java/com/lowagie/text/Element done
+Event: 6.731 loading class com/gitlab/pdftk_java/com/lowagie/text/MarkupAttributes
+Event: 6.731 loading class com/gitlab/pdftk_java/com/lowagie/text/MarkupAttributes done
+Event: 6.732 loading class com/gitlab/pdftk_java/LoadableRectangle
+Event: 6.732 loading class com/gitlab/pdftk_java/LoadableRectangle done
+Event: 6.732 Executing VM operation: ParallelGCFailedAllocation
+
+
+Dynamic libraries:
+6cc000000-6d6300000 rw-p 00000000 00:00 0 
+6d6300000-76eb00000 ---p 00000000 00:00 0 
+76eb00000-77f300000 rw-p 00000000 00:00 0 
+794a00000-7c0000000 ---p 00000000 00:00 0 
+7c0000000-7c0080000 rw-p 00000000 00:00 0 
+7c0080000-800000000 ---p 00000000 00:00 0 
+563e87d02000-563e87d03000 r-xp 00000000 fd:01 3547731                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/bin/java
+563e87f02000-563e87f03000 r--p 00000000 fd:01 3547731                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/bin/java
+563e87f03000-563e87f04000 rw-p 00001000 fd:01 3547731                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/bin/java
+563e89a86000-563e89aa7000 rw-p 00000000 00:00 0                          [heap]
+7fcb34000000-7fcb34021000 rw-p 00000000 00:00 0 
+7fcb34021000-7fcb38000000 ---p 00000000 00:00 0 
+7fcb38000000-7fcb38021000 rw-p 00000000 00:00 0 
+7fcb38021000-7fcb3c000000 ---p 00000000 00:00 0 
+7fcb3c000000-7fcb3c99d000 rw-p 00000000 00:00 0 
+7fcb3c99d000-7fcb40000000 ---p 00000000 00:00 0 
+7fcb40000000-7fcb40318000 rw-p 00000000 00:00 0 
+7fcb40318000-7fcb44000000 ---p 00000000 00:00 0 
+7fcb44000000-7fcb44021000 rw-p 00000000 00:00 0 
+7fcb44021000-7fcb48000000 ---p 00000000 00:00 0 
+7fcb48000000-7fcb48021000 rw-p 00000000 00:00 0 
+7fcb48021000-7fcb4c000000 ---p 00000000 00:00 0 
+7fcb4c000000-7fcb4c021000 rw-p 00000000 00:00 0 
+7fcb4c021000-7fcb50000000 ---p 00000000 00:00 0 
+7fcb501d4000-7fcb501ec000 r-xp 00000000 fd:01 3547768                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libnet.so
+7fcb501ec000-7fcb503eb000 ---p 00018000 fd:01 3547768                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libnet.so
+7fcb503eb000-7fcb503ec000 r--p 00017000 fd:01 3547768                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libnet.so
+7fcb503ec000-7fcb503ed000 rw-p 00018000 fd:01 3547768                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libnet.so
+7fcb503ed000-7fcb503ff000 r-xp 00000000 fd:01 3547769                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libnio.so
+7fcb503ff000-7fcb505fe000 ---p 00012000 fd:01 3547769                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libnio.so
+7fcb505fe000-7fcb505ff000 r--p 00011000 fd:01 3547769                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libnio.so
+7fcb505ff000-7fcb50600000 rw-p 00012000 fd:01 3547769                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libnio.so
+7fcb50600000-7fcb58000000 rw-p 00000000 00:00 0 
+7fcb58000000-7fcb58021000 rw-p 00000000 00:00 0 
+7fcb58021000-7fcb5c000000 ---p 00000000 00:00 0 
+7fcb5c000000-7fcb5c2c4000 rw-p 00000000 00:00 0 
+7fcb5c2c4000-7fcb60000000 ---p 00000000 00:00 0 
+7fcb60000000-7fcb60021000 rw-p 00000000 00:00 0 
+7fcb60021000-7fcb64000000 ---p 00000000 00:00 0 
+7fcb640c0000-7fcb640f1000 rw-p 00000000 00:00 0 
+7fcb640f1000-7fcb640f2000 ---p 00000000 00:00 0 
+7fcb640f2000-7fcb641f2000 rw-p 00000000 00:00 0 
+7fcb641f2000-7fcb641f5000 ---p 00000000 00:00 0 
+7fcb641f5000-7fcb642f3000 rw-p 00000000 00:00 0 
+7fcb642f3000-7fcb642f7000 ---p 00000000 00:00 0 
+7fcb642f7000-7fcb643f4000 rw-p 00000000 00:00 0 
+7fcb643f4000-7fcb643f8000 ---p 00000000 00:00 0 
+7fcb643f8000-7fcb644f5000 rw-p 00000000 00:00 0 
+7fcb644f5000-7fcb644f8000 ---p 00000000 00:00 0 
+7fcb644f8000-7fcb645f6000 rw-p 00000000 00:00 0 
+7fcb645f6000-7fcb645f9000 ---p 00000000 00:00 0 
+7fcb645f9000-7fcb646f7000 rw-p 00000000 00:00 0 
+7fcb646f7000-7fcb646fa000 ---p 00000000 00:00 0 
+7fcb646fa000-7fcb647f8000 rw-p 00000000 00:00 0 
+7fcb647f8000-7fcb647f9000 ---p 00000000 00:00 0 
+7fcb647f9000-7fcb65000000 rw-p 00000000 00:00 0 
+7fcb65000000-7fcb65360000 rwxp 00000000 00:00 0 
+7fcb65360000-7fcb74000000 ---p 00000000 00:00 0 
+7fcb74000000-7fcb744c7000 rw-p 00000000 00:00 0 
+7fcb744c7000-7fcb78000000 ---p 00000000 00:00 0 
+7fcb78011000-7fcb78022000 r--s 00211000 fd:01 3547822                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/jsse.jar
+7fcb78022000-7fcb7802b000 r--s 000ed000 fd:01 3549795                    /usr/share/java/pdftk.jar
+7fcb7802b000-7fcb7807e000 r--s 003fd000 fd:01 3549785                    /usr/share/java/bcprov.jar
+7fcb7807e000-7fcb78310000 rw-p 00000000 00:00 0 
+7fcb78310000-7fcb784e2000 r--s 044c8000 fd:01 3547836                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/rt.jar
+7fcb784e2000-7fcb78ab3000 rw-p 00000000 00:00 0 
+7fcb78ab3000-7fcb78db3000 ---p 00000000 00:00 0 
+7fcb78db3000-7fcb79553000 rw-p 00000000 00:00 0 
+7fcb79553000-7fcb79554000 ---p 00000000 00:00 0 
+7fcb79554000-7fcb79654000 rw-p 00000000 00:00 0 
+7fcb79654000-7fcb79655000 ---p 00000000 00:00 0 
+7fcb79655000-7fcb797a7000 rw-p 00000000 00:00 0 
+7fcb797a7000-7fcb79c6b000 ---p 00000000 00:00 0 
+7fcb79c6b000-7fcb79cbd000 rw-p 00000000 00:00 0 
+7fcb79cbd000-7fcb7a180000 ---p 00000000 00:00 0 
+7fcb7a180000-7fcb7a205000 rw-p 00000000 00:00 0 
+7fcb7a205000-7fcb7a40b000 ---p 00000000 00:00 0 
+7fcb7a40b000-7fcb7a41a000 rw-p 00000000 00:00 0 
+7fcb7a41a000-7fcb7a7cc000 ---p 00000000 00:00 0 
+7fcb7a7cc000-7fcb7a7d4000 r-xp 00000000 fd:01 3547776                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libzip.so
+7fcb7a7d4000-7fcb7a9d3000 ---p 00008000 fd:01 3547776                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libzip.so
+7fcb7a9d3000-7fcb7a9d4000 r--p 00007000 fd:01 3547776                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libzip.so
+7fcb7a9d4000-7fcb7a9d5000 rw-p 00008000 fd:01 3547776                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libzip.so
+7fcb7a9d5000-7fcb7a9e1000 r-xp 00000000 fd:01 1070102                    /usr/lib64/libnss_files-2.17.so
+7fcb7a9e1000-7fcb7abe0000 ---p 0000c000 fd:01 1070102                    /usr/lib64/libnss_files-2.17.so
+7fcb7abe0000-7fcb7abe1000 r--p 0000b000 fd:01 1070102                    /usr/lib64/libnss_files-2.17.so
+7fcb7abe1000-7fcb7abe2000 rw-p 0000c000 fd:01 1070102                    /usr/lib64/libnss_files-2.17.so
+7fcb7abe2000-7fcb7abe8000 rw-p 00000000 00:00 0 
+7fcb7abe8000-7fcb7ac12000 r-xp 00000000 fd:01 3547758                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libjava.so
+7fcb7ac12000-7fcb7ae11000 ---p 0002a000 fd:01 3547758                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libjava.so
+7fcb7ae11000-7fcb7ae12000 r--p 00029000 fd:01 3547758                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libjava.so
+7fcb7ae12000-7fcb7ae14000 rw-p 0002a000 fd:01 3547758                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libjava.so
+7fcb7ae14000-7fcb7ae21000 r-xp 00000000 fd:01 3547775                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libverify.so
+7fcb7ae21000-7fcb7b020000 ---p 0000d000 fd:01 3547775                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libverify.so
+7fcb7b020000-7fcb7b022000 r--p 0000c000 fd:01 3547775                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libverify.so
+7fcb7b022000-7fcb7b023000 rw-p 0000e000 fd:01 3547775                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/libverify.so
+7fcb7b023000-7fcb7b02a000 r-xp 00000000 fd:01 1070110                    /usr/lib64/librt-2.17.so
+7fcb7b02a000-7fcb7b229000 ---p 00007000 fd:01 1070110                    /usr/lib64/librt-2.17.so
+7fcb7b229000-7fcb7b22a000 r--p 00006000 fd:01 1070110                    /usr/lib64/librt-2.17.so
+7fcb7b22a000-7fcb7b22b000 rw-p 00007000 fd:01 1070110                    /usr/lib64/librt-2.17.so
+7fcb7b22b000-7fcb7b240000 r-xp 00000000 fd:01 1058473                    /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7fcb7b240000-7fcb7b43f000 ---p 00015000 fd:01 1058473                    /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7fcb7b43f000-7fcb7b440000 r--p 00014000 fd:01 1058473                    /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7fcb7b440000-7fcb7b441000 rw-p 00015000 fd:01 1058473                    /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+7fcb7b441000-7fcb7b542000 r-xp 00000000 fd:01 1050419                    /usr/lib64/libm-2.17.so
+7fcb7b542000-7fcb7b741000 ---p 00101000 fd:01 1050419                    /usr/lib64/libm-2.17.so
+7fcb7b741000-7fcb7b742000 r--p 00100000 fd:01 1050419                    /usr/lib64/libm-2.17.so
+7fcb7b742000-7fcb7b743000 rw-p 00101000 fd:01 1050419                    /usr/lib64/libm-2.17.so
+7fcb7b743000-7fcb7b82c000 r-xp 00000000 fd:01 1066701                    /usr/lib64/libstdc++.so.6.0.19
+7fcb7b82c000-7fcb7ba2c000 ---p 000e9000 fd:01 1066701                    /usr/lib64/libstdc++.so.6.0.19
+7fcb7ba2c000-7fcb7ba34000 r--p 000e9000 fd:01 1066701                    /usr/lib64/libstdc++.so.6.0.19
+7fcb7ba34000-7fcb7ba36000 rw-p 000f1000 fd:01 1066701                    /usr/lib64/libstdc++.so.6.0.19
+7fcb7ba36000-7fcb7ba4b000 rw-p 00000000 00:00 0 
+7fcb7ba4b000-7fcb7c7ee000 r-xp 00000000 fd:01 3547780                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/server/libjvm.so
+7fcb7c7ee000-7fcb7c9ee000 ---p 00da3000 fd:01 3547780                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/server/libjvm.so
+7fcb7c9ee000-7fcb7ca9c000 r--p 00da3000 fd:01 3547780                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/server/libjvm.so
+7fcb7ca9c000-7fcb7cac7000 rw-p 00e51000 fd:01 3547780                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/server/libjvm.so
+7fcb7cac7000-7fcb7cafd000 rw-p 00000000 00:00 0 
+7fcb7cafd000-7fcb7ccc1000 r-xp 00000000 fd:01 1049986                    /usr/lib64/libc-2.17.so
+7fcb7ccc1000-7fcb7cec0000 ---p 001c4000 fd:01 1049986                    /usr/lib64/libc-2.17.so
+7fcb7cec0000-7fcb7cec4000 r--p 001c3000 fd:01 1049986                    /usr/lib64/libc-2.17.so
+7fcb7cec4000-7fcb7cec6000 rw-p 001c7000 fd:01 1049986                    /usr/lib64/libc-2.17.so
+7fcb7cec6000-7fcb7cecb000 rw-p 00000000 00:00 0 
+7fcb7cecb000-7fcb7cecd000 r-xp 00000000 fd:01 1050417                    /usr/lib64/libdl-2.17.so
+7fcb7cecd000-7fcb7d0cd000 ---p 00002000 fd:01 1050417                    /usr/lib64/libdl-2.17.so
+7fcb7d0cd000-7fcb7d0ce000 r--p 00002000 fd:01 1050417                    /usr/lib64/libdl-2.17.so
+7fcb7d0ce000-7fcb7d0cf000 rw-p 00003000 fd:01 1050417                    /usr/lib64/libdl-2.17.so
+7fcb7d0cf000-7fcb7d0dd000 r-xp 00000000 fd:01 3547745                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/jli/libjli.so
+7fcb7d0dd000-7fcb7d2dc000 ---p 0000e000 fd:01 3547745                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/jli/libjli.so
+7fcb7d2dc000-7fcb7d2dd000 r--p 0000d000 fd:01 3547745                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/jli/libjli.so
+7fcb7d2dd000-7fcb7d2de000 rw-p 0000e000 fd:01 3547745                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/amd64/jli/libjli.so
+7fcb7d2de000-7fcb7d2f3000 r-xp 00000000 fd:01 1070125                    /usr/lib64/libz.so.1.2.7
+7fcb7d2f3000-7fcb7d4f2000 ---p 00015000 fd:01 1070125                    /usr/lib64/libz.so.1.2.7
+7fcb7d4f2000-7fcb7d4f3000 r--p 00014000 fd:01 1070125                    /usr/lib64/libz.so.1.2.7
+7fcb7d4f3000-7fcb7d4f4000 rw-p 00015000 fd:01 1070125                    /usr/lib64/libz.so.1.2.7
+7fcb7d4f4000-7fcb7d50b000 r-xp 00000000 fd:01 1050012                    /usr/lib64/libpthread-2.17.so
+7fcb7d50b000-7fcb7d70a000 ---p 00017000 fd:01 1050012                    /usr/lib64/libpthread-2.17.so
+7fcb7d70a000-7fcb7d70b000 r--p 00016000 fd:01 1050012                    /usr/lib64/libpthread-2.17.so
+7fcb7d70b000-7fcb7d70c000 rw-p 00017000 fd:01 1050012                    /usr/lib64/libpthread-2.17.so
+7fcb7d70c000-7fcb7d710000 rw-p 00000000 00:00 0 
+7fcb7d710000-7fcb7d732000 r-xp 00000000 fd:01 1050409                    /usr/lib64/ld-2.17.so
+7fcb7d73a000-7fcb7d73f000 r--s 00048000 fd:01 3549788                    /usr/share/java/apache-commons-lang3.jar
+7fcb7d73f000-7fcb7d745000 r--s 000f6000 fd:01 3547819                    /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.392.b08-2.el7_9.x86_64/jre/lib/jfr.jar
+7fcb7d745000-7fcb7d81c000 rw-p 00000000 00:00 0 
+7fcb7d81c000-7fcb7d820000 ---p 00000000 00:00 0 
+7fcb7d820000-7fcb7d922000 rw-p 00000000 00:00 0 
+7fcb7d925000-7fcb7d926000 rw-p 00000000 00:00 0 
+7fcb7d926000-7fcb7d92e000 rw-s 00000000 fd:01 2626728                    /tmp/hsperfdata_www/9218
+7fcb7d92e000-7fcb7d92f000 rw-p 00000000 00:00 0 
+7fcb7d92f000-7fcb7d930000 ---p 00000000 00:00 0 
+7fcb7d930000-7fcb7d931000 rw-p 00000000 00:00 0 
+7fcb7d931000-7fcb7d932000 r--p 00021000 fd:01 1050409                    /usr/lib64/ld-2.17.so
+7fcb7d932000-7fcb7d933000 rw-p 00022000 fd:01 1050409                    /usr/lib64/ld-2.17.so
+7fcb7d933000-7fcb7d934000 rw-p 00000000 00:00 0 
+7ffcaaa8f000-7ffcaaab0000 rw-p 00000000 00:00 0                          [stack]
+7ffcaabc8000-7ffcaabca000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+java_command: com.gitlab.pdftk_java.pdftk /www/wwwroot/print/public/uploads/20240327/588f157d170a5f9e2cb443116d71e9d9.pdf dump_data
+java_class_path (initial): /usr/share/java/bcprov.jar:/usr/share/java/commons-lang3.jar:/usr/share/java/pdftk.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xb6a6a0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xb6a6a0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x93fef0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x93fef0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x93fef0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x93fef0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x940060], sa_mask[0]=00000000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x93ffb0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x93ffb0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x93ffb0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x93ffb0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:CentOS Linux release 7.9.2009 (Core)
+
+uname:Linux 3.10.0-1160.105.1.el7.x86_64 #1 SMP Thu Dec 7 15:39:45 UTC 2023 x86_64
+libc:glibc 2.17 NPTL 2.17 
+rlimit: STACK 8192k, CORE 0k, NPROC 62381, NOFILE 4096, AS infinity
+load average:0.69 0.24 0.12
+
+/proc/meminfo:
+MemTotal:       15990628 kB
+MemFree:          168144 kB
+MemAvailable:     189492 kB
+Buffers:            5628 kB
+Cached:           248344 kB
+SwapCached:            0 kB
+Active:         14840024 kB
+Inactive:         124464 kB
+Active(anon):   14710956 kB
+Inactive(anon):      580 kB
+Active(file):     129068 kB
+Inactive(file):   123884 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:               460 kB
+Writeback:             0 kB
+AnonPages:      14710708 kB
+Mapped:            39612 kB
+Shmem:               972 kB
+Slab:             257468 kB
+SReclaimable:      42340 kB
+SUnreclaim:       215128 kB
+KernelStack:       19840 kB
+PageTables:       214456 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:     7995312 kB
+Committed_AS:   23856356 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:       33464 kB
+VmallocChunk:   34359699964 kB
+Percpu:              424 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:   1005568 kB
+CmaTotal:              0 kB
+CmaFree:               0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       74424 kB
+DirectMap2M:     4888576 kB
+DirectMap1G:    11534336 kB
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-1
+cpu_memory_nodes: 0
+active_processor_count: 2
+cpu_quota: -1
+cpu_period: 100000
+cpu_shares: -1
+memory_limit_in_bytes: -1
+memory_and_swap_limit_in_bytes: -1
+memory_soft_limit_in_bytes: -1
+memory_usage_in_bytes: 15323983872
+memory_max_usage_in_bytes: 0
+
+
+CPU:total 2 (initial active 2) (1 cores per cpu, 2 threads per core) family 6 model 85 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, rtm, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 85
+model name	: Intel(R) Xeon(R) Platinum 8269CY CPU @ 2.50GHz
+stepping	: 7
+microcode	: 0x1
+cpu MHz		: 2500.002
+cache size	: 36608 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 1
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single rsb_ctxsw fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 arat avx512_vnni
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 85
+model name	: Intel(R) Xeon(R) Platinum 8269CY CPU @ 2.50GHz
+stepping	: 7
+microcode	: 0x1
+cpu MHz		: 2500.002
+cache size	: 36608 KB
+physical id	: 0
+siblings	: 2
+core id		: 0
+cpu cores	: 1
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 22
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single rsb_ctxsw fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 arat avx512_vnni
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 15990628k(168120k free), swap 0k(0k free)
+
+vm_info: OpenJDK 64-Bit Server VM (25.392-b08) for linux-amd64 JRE (1.8.0_392-b08), built on Nov 14 2023 16:31:55 by "mockbuild" with gcc 4.8.5 20150623 (Red Hat 4.8.5-44)
+
+time: Wed Mar 27 01:24:58 2024
+timezone: CST
+elapsed time: 6.858581 seconds (0d 0h 0m 6s)
+
